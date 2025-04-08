@@ -1,0 +1,17 @@
+Section Two:
+** a. You receive a security alert through GuardDuty noting suspicious outbound traffic to a strange IP from an EC2 instance in the dev environment. What would be your approach to investigating this potential risk?
+
+Solution:
+1. I will review the specific GuardDuty finding to understand whether it's truly malicious traffic or potentially a misconfigured legitimate request.
+
+2. I will check the IP address using a tool such as IPinfo.io to get the owner of the IP address and other details. Is it a known malicious IP or associated with any legitimate service
+
+3. I will check VPC Flow Logs to analyze the network traffic patterns for the EC2 instance to see the source, destination and type of traffic being sent to the suspicious IP.
+
+4. I will SSH into the EC2 instance and review SSH access logs or check for any unusual login activities.
+
+5. I will check application logs and AWS CloudTrail logs for unusual API calls or activities associated with the instance.
+
+6. If the suspicious activity continues, I will remove the instance from the internet (disable public IP) and temporarily disable security group rules to block outbound traffic.
+
+7. If the instance is compromised, I will terminate the instance and launch a new one. I will also replace sensitive credentials (like IAM roles, SSH keys) and review instance configurations to prevent similar issues in the future.

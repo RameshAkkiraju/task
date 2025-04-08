@@ -1,0 +1,40 @@
+Section Two:
+
+** b. The company suffers a security incident in AWS, which is now contained. The interviewee is tasked with assisting the security lead with the investigation into what happened. As the cloud expert, what would you recommend be the first action to start triaging the event?
+
+Solution:
+
+1. I will first gather the information from the security team to understand the current containment status and the nature of the security incident. What resources were affected (e.g., EC2, S3, IAM roles, etc.)?
+
+2. I will analyze AWS CloudTrail logs and look for unusual or unauthorized activities, including:
+    - Changes to security groups or network configurations.
+    - API calls related to IAM (role creation, permission changes).
+    - S3 (data access or transfer).
+    - EC2 (instance termination, unexpected instances started).
+
+3. I will go through AWS Config and check the current configurations of key AWS resources to identify any non-compliant or misconfigured resources that could have been exploited in the attack.
+
+
+4. I will review IAM role and policy changes.
+
+5. I will identify and review the EC2 instance logs for any signs of compromise (e.g., malware, unauthorized access). I will also check VPC Flow Logs for unusual network traffic patterns and analyze whether there are any instances communicating with suspicious external IPs.
+
+6. I will then review S3 access logs to see who accessed the data, when, and from which IP, and look for any GetObject or PutObject actions that might indicate data was copied out of the buckets.
+
+
+7. If there is any indication that further compromise is possible, I will ensure that affected resources are isolated, even if the incident is contained. This includes:
+    - Disabling IAM users or roles that were compromised.
+    - Revoking keys and sessions used by attackers.
+    - Moving instances into a security group with restricted access or shutting them down.
+
+8. I will then work with the incident response team to determine how the attacker initially gained access (via any exposed API, misconfigured IAM role, unpatched vulnerability, etc.). I will document the findings and recommendations.
+
+9. After the investigation, I will prepare the Root Cause Analysis (RCA), which includes:
+    - A summary of what happened, how it happened, and the impact.
+    - Detailed steps taken to contain and recover from the incident.
+    - Recommendations for improving security to prevent similar incidents in the future.
+
+10. Once the incident is fully understood and resolved, I will implement necessary security improvements, such as:
+    - Updating IAM policies and roles to enforce least privilege.
+    - Enabling monitoring and alerting through services like CloudWatch and GuardDuty.
+    - Patching vulnerabilities in EC2 instances or other resources.
